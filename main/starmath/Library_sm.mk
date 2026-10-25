@@ -69,6 +69,7 @@ $(eval $(call gb_Library_add_exception_objects,sm,\
 	starmath/source/action \
 	starmath/source/cfgitem \
 	starmath/source/config \
+	starmath/source/converter \
 	starmath/source/dialog \
 	starmath/source/document \
 	starmath/source/edit \

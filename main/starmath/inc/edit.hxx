@@ -120,6 +120,7 @@ public:
 	void 				Cut();
 	void 				Copy();
 	void 				Paste();
+	void                ConvertFromLaTeX();
 	void 				Delete();
 	void 				SelectAll();
 	void 				InsertText(const String &rText);

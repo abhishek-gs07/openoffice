@@ -223,6 +223,15 @@ Menu RID_COMMANDMENU
 	{
 		MenuItem
 		{
+			Identifier = RID_CONVERTLATEX ;
+			Text [ en-US ] = "Convert from LaTeX" ;
+		};
+		MenuItem
+		{
+			Separator = TRUE ;
+		};
+		MenuItem
+		{
 			Identifier = RID_UNBINOPS_MENU ;
 			HelpId = HID_SMA_UNBINOPS_TBX ;
 			Text [ en-US ] = "~Unary/Binary Operators" ;

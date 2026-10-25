@@ -59,6 +59,7 @@
 #include "view.hxx"
 #include "document.hxx"
 #include "config.hxx"
+#include "converter.hxx"
 
 #define SCROLL_LINE 		24
 
@@ -394,6 +395,12 @@ sal_Bool SmEditWindow::HandleWheelCommands( const CommandEvent &rCEvt )
 
 IMPL_LINK_INLINE_START( SmEditWindow, MenuSelectHdl, Menu *, pMenu )
 {
+    if (pMenu->GetCurItemId() == RID_CONVERTLATEX)
+    {
+        ConvertFromLaTeX();
+        return 0;
+    }
+
     SmViewShell *pViewSh = rCmdBox.GetView();
 	if (pViewSh)
 		pViewSh->GetViewFrame()->GetDispatcher()->Execute(
@@ -908,6 +915,22 @@ void SmEditWindow::Paste()
     {
         pEditView->Paste();
         UpdateStatus( sal_True );
+    }
+}
+
+void SmEditWindow::ConvertFromLaTeX()
+{
+    if (!pEditView)
+        CreateEditView();
+
+    if (pEditView)
+    {
+        const String aConverted = SmConverter::ConvertLatex(GetText());
+        pEditView->SetSelection(ESelection(0, 0, EE_PARA_MAX, EE_INDEX_MAX));
+        pEditView->InsertText(aConverted);
+        aModifyTimer.Start();
+        aCursorMoveTimer.Start();
+        UpdateStatus(sal_True);
     }
 }
 
